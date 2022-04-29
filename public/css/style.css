@@ -4,12 +4,22 @@
 body {
     margin: 0px;
 }
+#setup {
+    display: flex;
+    width: 500px;
+    height: 100px;
+    margin: 100px auto;
+    padding: 0 20px;
 
+    align-items: center;
+    justify-content: center;
+    background-color: lightgray;
+}
 #controls {
     display: flex;
     width: 500px;
     height: 100px;
-    margin: 200px auto;
+    margin: 100px auto;
     padding: 0 20px;
 
     align-items: center;
