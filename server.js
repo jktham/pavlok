@@ -26,7 +26,9 @@ app.get("/auth", function (req, res) {
 
 app.get("/token", function (req, res) {
     if (token) {
-        res.status(200).send(token);
+        res.status(200);
+        res.append('Content-Type', 'text/plain; charset=utf8');
+        res.send(token);
     } else {
         res.sendStatus(500);
     }

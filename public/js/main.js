@@ -1,11 +1,17 @@
-const authButton = document.querySelector("#auth");
-const tokenButton = document.querySelector("#token");
+const authButton = document.querySelector("#auth-button");
+const tokenButton = document.querySelector("#token-button");
 
-const vibrateButton = document.querySelector("#vibrate");
-const beepButton = document.querySelector("#beep");
-const zapButton = document.querySelector("#zap");
+const tokenSpan = document.querySelector("#token-span");
+
+const vibrateButton = document.querySelector("#vibrate-button");
+const beepButton = document.querySelector("#beep-button");
+const shockButton = document.querySelector("#shock-button");
+
+const intensitySlider = document.querySelector("#intensity-slider");
+const intensitySpan = document.querySelector("#intensity-span");
 
 let token = "";
+let intensity = intensitySlider.value;
 
 authButton.addEventListener("click", () => {
     window.location="/auth";
@@ -18,6 +24,7 @@ tokenButton.addEventListener("click", () => {
                 response.text().then(function (text) {
                     token = text;
                     tokenButton.innerHTML = "Success";
+                    tokenSpan.innerHTML = token;
                 });                
             } else {
                 tokenButton.innerHTML = "Failed";
@@ -26,13 +33,45 @@ tokenButton.addEventListener("click", () => {
 });
 
 vibrateButton.addEventListener("click", () => {
-    console.log("1");
+    fetch("https://pavlok-mvp.herokuapp.com/api/v1/stimuli/vibration/" + intensity, {
+        method: "POST",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }).then( response => {
+        if (response.ok) {
+            console.log("Received instruction: vibration, " + intensity);
+        }
+    });
 });
 
 beepButton.addEventListener("click", () => {
-    console.log("2");
+    fetch("https://pavlok-mvp.herokuapp.com/api/v1/stimuli/beep/" + intensity, {
+        method: "POST",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }).then( response => {
+        if (response.ok) {
+            console.log("Received instruction: beep, " + intensity);
+        }
+    });
 });
 
-zapButton.addEventListener("click", () => {
-    console.log("3");
+shockButton.addEventListener("click", () => {
+    fetch("https://pavlok-mvp.herokuapp.com/api/v1/stimuli/shock/" + intensity, {
+        method: "POST",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }).then( response => {
+        if (response.ok) {
+            console.log("Received instruction: shock, " + intensity);
+        }
+    });
+});
+
+intensitySlider.addEventListener("input", () => {
+    intensity = intensitySlider.value;
+    intensitySpan.innerHTML = intensitySlider.value;
 });

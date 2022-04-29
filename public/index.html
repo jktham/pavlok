@@ -7,13 +7,23 @@
     <title>Controls</title>
 </head>
 <body>
-    <div id="setup">
-        <button id="auth" class="button">Authenticate</button>
-        <button id="token" class="button">Get Token</button>
-    </div>
-    <div id="controls">
-        <button id="vibrate" class="button">Vibrate</button>
-        <button id="beep" class="button">Beep</button>
-        <button id="zap" class="button">Zap</button>
+    <div id="main">
+        <div>
+            <button id="auth-button" class="button">Authenticate</button>
+            <button id="token-button" class="button">Get Token</button>
+        </div>
+        <div>
+            <span id="token-span">No Token</span>
+        </div>
+        <div>
+            <button id="vibrate-button" class="button">Vibrate</button>
+            <button id="beep-button" class="button">Beep</button>
+            <button id="shock-button" class="button">Shock</button>
+        </div>
+        <div>
+            <span id="intensity-label">Intensity</span>
+            <input type="range" id="intensity-slider" class="slider" min="1" max="255" value="128">
+            <span id="intensity-span">128</span>
+        </div>
     </div>
 </body>
